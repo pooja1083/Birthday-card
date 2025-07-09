@@ -1,0 +1,65 @@
+/* ---------- existing styles (unchanged) ---------- */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:linear-gradient(to right,#ffdde1,#ee9ca7);
+  font-family:"Comic Sans MS",cursive,sans-serif;
+  display:flex;justify-content:center;align-items:center;
+  height:100vh;overflow:hidden;
+}
+.card{
+  background:#fff;width:400px;height:450px;border-radius:20px;
+  box-shadow:0 0 30px rgba(0,0,0,.2);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:30px;text-align:center;position:relative;overflow:hidden;
+}
+.text{font-size:1.5rem;opacity:0;animation:fadeIn 2s ease forwards;}
+.text:nth-child(2){animation-delay:2.5s;}
+.text:nth-child(3){animation-delay:5s;}
+.jaldi{
+  font-size:2.5rem;font-weight:bold;color:#e91e63;opacity:0;
+  animation:popIn 5s ease-out forwards;animation-delay:7.5s;
+}
+.hearts{position:absolute;inset:0;pointer-events:none;}
+.heart{
+  position:absolute;width:20px;height:20px;background:pink;
+  transform:rotate(45deg);animation:floatUp 6s infinite ease-in;
+}
+.heart::before,.heart::after{
+  content:"";position:absolute;width:20px;height:20px;background:pink;border-radius:50%;
+}
+.heart::before{top:-10px;left:0;}
+.heart::after{top:0;left:-10px;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes popIn{0%{transform:scale(0);opacity:0;}60%{transform:scale(1.2);opacity:1;}100%{transform:scale(1);}}
+@keyframes floatUp{0%{transform:translateY(100%) scale(1) rotate(45deg);opacity:1;}
+                   100%{transform:translateY(-200%) scale(.5) rotate(45deg);opacity:0;}}
+
+/* ---------- NEW: rose‑petal styles ---------- */
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;}
+
+.petal{
+  position:absolute;
+  width:16px;
+  height:22px;
+  background:#e91e63;
+  border-radius:60% 60% 60% 60%;
+  opacity:.85;
+  transform-origin:center top;
+  animation:fallDown 8s linear infinite;
+}
+
+/* A little gloss highlight for realism */
+.petal::after{
+  content:"";
+  position:absolute;
+  top:5px;left:5px;
+  width:6px;height:6px;
+  background:rgba(255,255,255,.6);
+  border-radius:50%;
+}
+
+@keyframes fallDown{
+  0%   {transform:translateX(0) translateY(-120%) rotate(0deg);}
+  50%  {transform:translateX(40px) translateY(50vh)   rotate(180deg);}
+  100% {transform:translateX(-20px) translateY(110vh) rotate(360deg);opacity:0;}
+}
